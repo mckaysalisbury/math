@@ -33,7 +33,7 @@ def roundTwo(howManyDiceLeftThisRound, howManyDifferentDiceRolled):
     return create(
         roundTwo(howManyDiceLeftThisRound - 1, howManyDifferentDiceRolled + 1),
         roundTwo(howManyDiceLeftThisRound - 1, howManyDifferentDiceRolled),
-        1/6)
+        (6-howManyDifferentDiceRolled)/6)
 
 def roundOne(howManyDiceLeftThisRound, howManyDifferentDiceRolled):
     if howManyDiceLeftThisRound == 0:
@@ -41,9 +41,9 @@ def roundOne(howManyDiceLeftThisRound, howManyDifferentDiceRolled):
     return create(
         roundOne(howManyDiceLeftThisRound - 1, howManyDifferentDiceRolled + 1),
         roundOne(howManyDiceLeftThisRound - 1, howManyDifferentDiceRolled),
-        1/6)
+        (6-howManyDifferentDiceRolled)/6)
 
 print("Full 3 rounds", calculate(roundOne(6, 0)))
 
 for i in range(1,7):
-    print(f'got #{i} on first round', calculate(roundOne(0,i)))
+    print(f'got {i} different on first roll', calculate(roundOne(0,i)))

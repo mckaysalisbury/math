@@ -43,7 +43,22 @@ def roundOne(howManyDiceLeftThisRound, howManyDifferentDiceRolled):
         roundOne(howManyDiceLeftThisRound - 1, howManyDifferentDiceRolled),
         (6-howManyDifferentDiceRolled)/6)
 
+# This is a generic form of the roundOne, roundTwo, roundThree calculation
+def rounds(howManyDiceLeftThisRound, howManyDifferentDiceRolled, howManyRoundsLeft):
+    if howManyDiceLeftThisRound == 0:
+        if (howManyRoundsLeft == 1):
+            return win if howManyDifferentDiceRolled == 6 else lose
+        return rounds(6 - howManyDifferentDiceRolled, howManyDifferentDiceRolled, howManyRoundsLeft - 1)
+    return create(
+        rounds(howManyDiceLeftThisRound - 1, howManyDifferentDiceRolled + 1, howManyRoundsLeft),
+        rounds(howManyDiceLeftThisRound - 1, howManyDifferentDiceRolled, howManyRoundsLeft),
+        (6-howManyDifferentDiceRolled)/6)
+
+
+# These should be the same
 print("Full 3 rounds", calculate(roundOne(6, 0)))
+print("Full 3 rounds", calculate(rounds(6, 0, 3)))
 
 for i in range(1,7):
-    print(f'got {i} different on first roll', calculate(roundOne(0,i)))
+    print(f'got {i} different on first roll:', calculate(roundOne(0,i)))
+    print(f'check {i} calculation:          ', calculate(rounds(0,i,3)))

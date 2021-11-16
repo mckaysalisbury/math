@@ -58,7 +58,14 @@ def rounds(howManyDiceLeftThisRound, howManyDifferentDiceRolled, howManyRoundsLe
 # These should be the same
 print("Full 3 rounds", calculate(roundOne(6, 0)))
 print("Full 3 rounds", calculate(rounds(6, 0, 3)))
+print("4 rounds", calculate(rounds(6, 0 ,4)))
 
 for i in range(1,7):
     print(f'got {i} different on first roll:', calculate(roundOne(0,i)))
     print(f'check {i} calculation:          ', calculate(rounds(0,i,3)))
+
+for i in range(1,7):
+    print(f'check {i} calculation (4 rounds):', calculate(rounds(0,i,4)))
+
+for i in range(1,7):
+    print(f'check {i} calculation (4r 7d6):', calculate(rounds(0,i,4)))
